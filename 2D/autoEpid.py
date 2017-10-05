@@ -16,6 +16,10 @@ import time
 
 class db_settings():
     def __init__(self):
+        self.database = ''
+        self.user = ''
+        self.host = ''
+        self.password = ''
         self.table = ['calibration', 'patient', 'rtplan', 'field', 'controlitem', 'control2ditem', 'backscattercorrection']
         self.createString = ['(calibrationser serial PRIMARY KEY, treatmentmachine text, nominalenergy integer, fluencemode text, calibrationfactor double precision, creationdate timestamp)',
             '(patientser serial PRIMARY KEY, patientariaser integer)',
@@ -143,6 +147,10 @@ def insert(table, evalItem, settings):
 
 
 def get_from_aria(item, value):
+    server = ""
+    user = ""
+    passwd = ""
+    db = ""
     conn = pymssql.connect(server, user, passwd, db)
     cur = conn.cursor()
     if item == 'PatientSer':
